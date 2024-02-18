@@ -12,6 +12,14 @@ contract Distribute {
     constructor() payable {}
 
     function distributeEther(address[] memory addresses) public {
-        // your code here
+        uint256 totalRecipients = addresses.length;
+        uint256 totalBalanceToSend = address(this).balance / totalRecipients;
+        require(totalRecipients > 0 );
+        for (uint256 i = 0; i < totalRecipients; i++) {
+            address payable to = payable(addresses[i]);
+            to.transfer(totalBalanceToSend);
+        }
+
+
     }
 }
