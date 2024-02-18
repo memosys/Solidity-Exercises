@@ -10,8 +10,13 @@ contract BlockNumber {
      */
 
     address public lastCaller;
+    uint public lastBlockNumber;
 
     function callMe() external {
-        /// your code here
+        if( lastBlockNumber == block.number) {
+            revert('Already Called');
+        }
+        lastCaller = msg.sender;
+        lastBlockNumber = block.number;
     }
 }
