@@ -7,4 +7,10 @@ contract Deployer {
     /* This exercise assumes you know how constructors works.
     The contract must have a constructor with a string argument
     that sets the greeting variable, if not it reverts. */
+    constructor(string memory message) {
+    if(bytes(message).length < 1) {
+        revert('Message not supplied');
+    }
+        greeting = message;
+    }
 }
